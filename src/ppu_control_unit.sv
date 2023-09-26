@@ -79,7 +79,7 @@ module ppu_control_unit (
 
     logic valid_in_st0, valid_in_st1, valid_in_st2;
     always_ff @(posedge clk) begin
-        if (rst) begin
+        if (rst || ~valid_i) begin
             valid_in_st0 <= 0;
             valid_in_st1 <= 0;
             valid_in_st2 <= 0;
@@ -90,6 +90,6 @@ module ppu_control_unit (
         end
     end
 
-    assign valid_o = valid_in_st1;
+    assign valid_o = valid_in_st2;
 
 endmodule
